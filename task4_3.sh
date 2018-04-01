@@ -31,7 +31,7 @@ fi
 #deleting old files
 
 cd "$1"
-tarname2=`pwd | sed 's/\//-/g' | cut -c 2-`
+tarname2=`pwd | sed -r 's/[/]+/-/g' | sed 's/^-//'`
 cd /tmp/backups
 fa=`find . -type f -name "$tarname2*.tar.gz" | wc -l`
 sh=`echo $(( $2 - 1 ))`
