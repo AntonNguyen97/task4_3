@@ -49,7 +49,7 @@ fi
 cd "$1"
 dirName="${1}"
 tarName=`{ pwd | sed -r 's/[/]+/-/g' | sed 's/^-//'; date '+%D/%H-%M-%S' | sed 's/\//-/g'; } | sed ':a;N;s/\n//;ba'`
-files=`find . -type f | cut -c3-`
+files=`{ find . -type f | cut -c3-; find . -type d | cut -c3-; }`
 tar cfz $tarName.tar.gz $files
 mv "$tarName.tar.gz" "/tmp/backups"
 
